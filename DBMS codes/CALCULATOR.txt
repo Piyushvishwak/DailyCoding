@@ -1,0 +1,29 @@
+
+CREATE OR REPLACE FUNCTION calculator (
+    num1 IN NUMBER,
+    num2 IN NUMBER,
+    operator IN VARCHAR2
+) RETURN NUMBER
+IS
+    result NUMBER;
+BEGIN
+    CASE operator
+        WHEN '+' THEN result := num1 + num2;
+        WHEN '-' THEN result := num1 - num2;
+        WHEN '*' THEN result := num1 * num2;
+        WHEN '/' THEN result := num1 / num2;
+        ELSE RAISE_APPLICATION_ERROR(-20001, 'Invalid operator: ' || operator);
+    END CASE;
+
+    RETURN result;
+END;
+
+DECLARE
+    num1 NUMBER := :num1;
+    num2 NUMBER := :num2;
+    operator VARCHAR2(1) := :operator;
+    result NUMBER;
+BEGIN
+    result := calculator(num1, num2, operator);
+    DBMS_OUTPUT.PUT_LINE('Result: ' || result);
+END;

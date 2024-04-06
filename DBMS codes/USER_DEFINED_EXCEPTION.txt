@@ -1,0 +1,18 @@
+DECLARE
+    a NUMBER;
+    b NUMBER;
+    c NUMBER;
+    e EXCEPTION;
+BEGIN
+    a:=:a;
+    b:=:b;
+    IF b=0 THEN
+        RAISE e;
+    END IF;
+    c:=a/b;
+    DBMS_OUTPUT.PUT_LINE('RESULT = '||c);
+    EXCEPTION
+        WHEN e THEN
+        DBMS_OUTPUT.PUT_LINE('ERROR!');
+        DBMS_OUTPUT.PUT_LINE('YOUR DIVISOR IS ZERO!');
+END;

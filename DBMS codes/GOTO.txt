@@ -1,0 +1,19 @@
+DECLARE
+    Num1 NUMBER(2);
+    Num2 NUMBER(2);
+BEGIN
+    Num1:=:num1;
+    Num2:=:num2;
+    IF num1>num2 THEN
+        GOTO p1;
+    ELSE
+        GOTO p2;
+    END IF;
+    <<p1>>
+        DBMS_OUTPUT.PUT_LINE('num1 is bigger');
+    GOTO p3;
+    <<p2>>
+        DBMS_OUTPUT.PUT_LINE('num2 is bigger');
+    <<p3>>
+        DBMS_OUTPUT.PUT_LINE('End of Program');
+END;

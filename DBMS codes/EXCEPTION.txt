@@ -1,0 +1,51 @@
+DECLARE
+    n emp.Ename%TYPE;
+BEGIN 
+    SELECT Ename INTO n FROM emp WHERE Sal=3000;
+    DBMS_OUTPUT.PUT_LINE('empname = '||n);
+    EXCEPTION
+    WHEN too_many_rows THEN
+    DBMS_OUTPUT.PUT_LINE('more than one row returned!');
+END;
+
+
+
+
+DECLARE
+    n emp.ENAME%TYPE;
+BEGIN
+    SELECT ENAME INTO n FROM emp WHERE SAL=4500;
+    DBMS_OUTPUT.PUT_LINE('empname = '||n);
+EXCEPTION
+    WHEN no_data_found THEN
+    DBMS_OUTPUT.PUT_LINE('ERROR');
+    DBMS_OUTPUT.PUT_LINE('THERE IS NO EMPLOYEE HAVING SALARY = 4500');
+END;
+
+
+
+
+DECLARE
+    c_id X.ID%TYPE:=:c_id;
+    c_name X.NAME%TYPE;
+    c_add X.ADDRESS%TYPE;
+    ex_invalid_no EXCEPTION; -- user define exception
+BEGIN
+    IF c_id<=0 THEN
+        RAISE ex_invalid_no;
+    ELSE
+        SELECT NAME,ADDRESS INTO c_name,c_add FROM X WHERE ID=c_id;
+        DBMS_OUTPUT.PUT_LINE('NAME: '||c_name);
+        DBMS_OUTPUT.PUT_LINE('ADDRESS: '||c_add);
+    END IF;
+    EXCEPTION
+        WHEN ex_invalid_no THEN
+            DBMS_OUTPUT.PUT_LINE('ID MUST BE GREATER THAN ZERO!');
+        WHEN no_data_found THEN
+            DBMS_OUTPUT.PUT_LINE('NO SUCH CUSTOMER!');
+        WHEN others THEN
+            DBMS_OUTPUT.PUT_LINE('ERROR!');
+END;
+
+-- CREATE TABLE X(ID INT, NAME VARCHAR(30), AGE INT, ADDRESS VARCHAR(30), SALARY INT);
+-- INSERT INTO X VALUES(3,'Rahul',28,'Amritsar',5500);

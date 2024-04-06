@@ -1,0 +1,26 @@
+DECLARE
+    a NUMBER;
+    b NUMBER;
+    c NUMBER;
+    num NUMBER;
+    i NUMBER;
+BEGIN
+    num:=:num;
+    a:=0;
+    b:=1;
+    IF num=1 THEN
+        DBMS_OUTPUT.PUT_LINE(a);
+    ELSIF num=2 THEN
+        DBMS_OUTPUT.PUT_LINE(b);
+    ELSE
+        i:=1;
+        WHILE i<=num
+            LOOP
+                c:=a+b;
+                a:=b;
+                b:=c;
+                i:=i+1;
+            END LOOP;
+    END IF;
+    DBMS_OUTPUT.PUT_LINE(c);
+END;

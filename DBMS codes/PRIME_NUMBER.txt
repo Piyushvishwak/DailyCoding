@@ -1,0 +1,20 @@
+DECLARE
+    N NUMBER(2);
+    CNT NUMBER(2);
+    I NUMBER(2);
+BEGIN
+    N := :N;
+    CNT := 0;
+    I := 2;
+    WHILE I <= N/2 LOOP
+        IF MOD(N, I) = 0 THEN
+            CNT := CNT + 1; 
+        END IF;
+        I := I + 1;
+    END LOOP;
+    IF CNT = 0 THEN
+        DBMS_OUTPUT.PUT_LINE(N||' is a prime number!');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(N||' is not a prime number!');
+    END IF;
+END;
