@@ -1,0 +1,47 @@
+/*
+    Following is Binary Tree Node structure:
+    class TreeNode
+    {
+    public:
+        int data;
+        TreeNode *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(int x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
+    };
+*/
+
+bool isBST(TreeNode* root, int& minVal, int& maxVal, int& size) {
+    if (!root) {
+        minVal = INT_MAX;
+        maxVal = INT_MIN;
+        size = 0;
+        return true;
+    }
+    
+    int leftMin, leftMax, leftSize;
+    int rightMin, rightMax, rightSize;
+    
+    bool leftIsBST = isBST(root->left, leftMin, leftMax, leftSize);
+    bool rightIsBST = isBST(root->right, rightMin, rightMax, rightSize);
+    
+    if (leftIsBST && rightIsBST && root->data > leftMax && root->data < rightMin) {
+        minVal = min(root->data, leftMin);
+        maxVal = max(root->data, rightMax);
+        size = leftSize + rightSize + 1;
+        return true;
+    }
+    
+    minVal = INT_MIN;
+    maxVal = INT_MAX;
+    size = max(leftSize, rightSize);
+    return false;
+}
+
+int largestBST(TreeNode* root) {
+    int minVal, maxVal, size;
+    int maxSize = 0;
+    
+    isBST(root, minVal, maxVal, size);
+    return size;
+}
