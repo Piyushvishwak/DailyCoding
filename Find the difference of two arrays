@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
+        vector<vector<int>> diff;
+        set<int> set1(nums1.begin(), nums1.end());
+        set<int> set2(nums2.begin(), nums2.end());
+        vector<int> num1;
+        vector<int> num2;
+        for (int num : set1) {
+            if (set2.find(num) == set2.end()) {
+                num1.push_back(num);
+            }
+        }
+        for (int num : set2) {
+            if (set1.find(num) == set1.end()) {
+                num2.push_back(num);
+            }
+        }
+        diff.push_back(num1);
+        diff.push_back(num2);
+        return diff;
+    }
+};
