@@ -1,0 +1,29 @@
+#include<vector>
+#include<algorithm>
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        vector<int> counts(2001, 0);
+        // int ans=0;
+        for(int i=0;i<arr.size();i++){
+            counts[arr[i] + 1000]++;
+        }
+
+        vector<int> frequency_counts;
+        for(int count : counts) {
+            if(count > 0) {
+                frequency_counts.push_back(count);
+            }
+        }
+
+        sort(frequency_counts.begin(), frequency_counts.end());
+        for(int j=1;j<frequency_counts.size();j++){
+            if(frequency_counts[j]==frequency_counts[j-1]){
+                return false;
+            }
+        }
+        
+        return true;
+        
+    }
+};
