@@ -1,0 +1,15 @@
+DECLARE
+    num NUMBER;
+    s NUMBER;
+    ori NUMBER;
+BEGIN
+    num:=:num;
+    ori:=num;
+    s:=0;
+    WHILE num>0 
+        LOOP
+             s:=s+mod(num,10);
+             num:=floor(num/10);
+        END LOOP;
+    DBMS_OUTPUT.PUT_LINE('THE SUM OF DIGITS OF '||ori||' IS '|| s);
+END;

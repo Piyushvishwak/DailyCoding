@@ -1,0 +1,30 @@
+DECLARE
+    c_id X.ID%TYPE;
+    c_name X.NAME%TYPE;
+    c_add X.ADDRESS%TYPE;
+    CURSOR c_customers IS SELECT ID,NAME,ADDRESS FROM X;
+BEGIN
+    OPEN c_customers;
+    LOOP 
+        FETCH c_customers INTO c_id,c_name,c_add;
+        EXIT WHEN c_customers%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(c_id||' '||c_name||' '||c_add);
+        END LOOP;
+        CLOSE c_customers;
+END;
+
+
+
+
+DECLARE
+    CURSOR C123 IS SELECT NAME FROM STUDENT WHERE BRANCH='CSE';
+    my_name STUDENT.NAME%TYPE;
+BEGIN
+    OPEN C123;
+    LOOP 
+        FETCH C123 INTO my_name;
+        EXIT WHEN C123%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(my_name);
+        END LOOP;
+        CLOSE C123;
+END;

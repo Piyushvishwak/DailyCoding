@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if (s.length() != t.length()) return false; // Lengths should be the same
+
+    unordered_map<char, char> s_to_t; // Mapping from s -> t
+    unordered_map<char, char> t_to_s; // Mapping from t -> s
+
+    for (int i = 0; i < s.length(); i++) {
+        char s_char = s[i];
+        char t_char = t[i];
+
+        // Check if there is a mismatch in the mapping from s to t
+        if (s_to_t.count(s_char) && s_to_t[s_char] != t_char) {
+            return false;
+        }
+        
+        // Check if there is a mismatch in the mapping from t to s
+        if (t_to_s.count(t_char) && t_to_s[t_char] != s_char) {
+            return false;
+        }
+
+        // Set the mappings in both directions
+        s_to_t[s_char] = t_char;
+        t_to_s[t_char] = s_char;
+    }
+    
+    return true;
+    }
+};

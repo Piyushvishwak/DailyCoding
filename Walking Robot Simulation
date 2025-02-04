@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
+
+        vector<pair<int, int>> direction = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        int x = 0, y = 0, dir = 0;
+        int maxDistSq = 0;
+        
+        // Create a set of obstacles for fast lookup
+        unordered_set<string> obstacleSet;
+        for (const auto& obs : obstacles) {
+            obstacleSet.insert(to_string(obs[0]) + "," + to_string(obs[1]));
+        }
+        
+        for (int command : commands) {
+            if (command == -1) {
+                // Turn right
+                dir = (dir + 1) % 4;
+            } else if (command == -2) {
+                // Turn left
+                dir = (dir + 3) % 4;
+            } else {
+                // Move forward
+                for (int i = 0; i < command; ++i) {
+                    int newX = x + direction[dir].first;
+                    int newY = y + direction[dir].second;
+                    
+                    // Check if the new position is an obstacle
+                    if (obstacleSet.count(to_string(newX) + "," + to_string(newY)) == 0) {
+                        x = newX;
+                        y = newY;
+                        maxDistSq = max(maxDistSq, x * x + y * y);
+                    } else {
+                        // If there's an obstacle, stop moving in this direction
+                        break;
+                    }
+                }
+            }
+        }
+        return maxDistSq;
+    }
+};

@@ -1,0 +1,35 @@
+Create table emp2(Emp_no int, Emp_name varchar(55));
+
+Create or replace Trigger Z_trigger
+before Insert on emp2
+for each row 
+enable
+Declare V_user varchar(20);
+Begin
+Select user into v_user from dual;
+-- It will display user defined message
+dbms_output.put_line('You just inserted a value Mr.'||V_user);
+end;
+
+insert into emp2 values(11, 'Reetu');
+
+
+
+
+
+
+
+Create or replace Trigger En_trigger
+before update on emp2
+for each row 
+enable
+Declare V_user varchar(20);
+Begin
+Select user into v_user from dual;
+-- It will display user defined message
+dbms_output.put_line('You just updated a value Mr.'||V_user);
+end;
+
+select * from emp2;
+
+update emp2 set Emp_name='Kritika' where Emp_no=11;

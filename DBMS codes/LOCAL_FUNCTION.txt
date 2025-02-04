@@ -1,0 +1,16 @@
+DECLARE
+    a NUMBER;
+    c NUMBER;
+FUNCTION areasquare(x IN NUMBER)
+RETURN NUMBER
+IS
+z NUMBER;
+BEGIN
+z:=x*x;
+RETURN z;
+END;
+BEGIN
+a:=:a;
+c:=areasquare(a);
+dbms_output.put_line('The area of square is '||c);
+END;

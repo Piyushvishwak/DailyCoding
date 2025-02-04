@@ -1,0 +1,18 @@
+DECLARE 
+    a NUMBER(2);
+    b NUMBER(2);
+    c NUMBER(2);
+FUNCTION multiplication(a IN NUMBER, b IN NUMBER)
+    RETURN NUMBER
+    IS
+    c NUMBER;
+BEGIN
+    c:=a*b;
+    RETURN(c);
+END multiplication;
+BEGIN
+    a:=:a;
+    b:=:b;
+    c:=multiplication(a,b);
+dbms_output.put_line(c);
+END;

@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        unordered_map<char, int> countMap;
+        int n = chars.size(), index = 0;
+        
+        for (int i = 0; i < n; ) {
+            char currentChar = chars[i];
+            countMap[currentChar] = 0;
+            
+            while (i < n && chars[i] == currentChar) {
+                countMap[currentChar]++;
+                i++;
+            }
+            
+            chars[index++] = currentChar;
+            
+            if (countMap[currentChar] > 1) {
+                for (char c : to_string(countMap[currentChar])) {
+                    chars[index++] = c;
+                }
+            }
+        }
+        
+        return index;
+    }
+};

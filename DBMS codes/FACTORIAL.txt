@@ -1,0 +1,15 @@
+DECLARE
+  n NUMBER;  
+  fact NUMBER;
+  ori NUMBER;
+BEGIN
+    n:=:n;
+    ori:=n;
+    fact:=1;
+    WHILE n>0
+        LOOP
+            fact:=fact*n;
+            n:=n-1;
+        END LOOP;
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || ori || ' is ' || fact);
+END;

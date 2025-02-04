@@ -1,0 +1,12 @@
+DECLARE
+    grade char(1);
+BEGIN
+    grade:=:grade;
+    CASE grade
+        WHEN 'A' THEN DBMS_OUTPUT.PUT_LINE('Excellent');
+        WHEN 'B' THEN DBMS_OUTPUT.PUT_LINE('Very Good');
+        WHEN 'C' THEN DBMS_OUTPUT.PUT_LINE('Well Done');
+        WHEN 'D' THEN DBMS_OUTPUT.PUT_LINE('You Passed');
+        WHEN 'F' THEN DBMS_OUTPUT.PUT_LINE('Better Try Again');
+    END CASE;
+END;
