@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
     string s1="abc";
-    string s2="xyzcabz";
+    string s2="xyzz";
     string win="";
     if(s1.length()>s2.length()){
         return false;
